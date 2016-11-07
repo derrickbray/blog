@@ -11,12 +11,22 @@ class PostController {
   }
 //show a form to create
   * create(request, response) {
-    //
+    yield response.sendView('posts.create');
   }
 //save a new post to the database
 //POST
   * store(request, response) {
-    //
+    const {title, author, content} = request.all();
+
+    yield Post.create({
+      title,
+      author,
+      content,
+      slug: title,
+      post_date: new Date(),
+    });
+
+    response.redirect('/');
   }
 
   * show(request, response) {
