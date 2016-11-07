@@ -7,7 +7,7 @@ class PostController {
   * index(request, response) {
     const posts = yield Post.all();
 
-    response.send(posts);
+    yield response.sendView('posts.index', { posts:posts.toJSON() });
   }
 //show a form to create
   * create(request, response) {
